@@ -1,45 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './loginpage.css';
+import logo from './img/genesys.png';
 
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add your login logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
-  };
-
+// Custom logo component
+const Logo = () => {
   return (
-    <div className="login-container">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Login</h2>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={handleEmailChange}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div className="logo-container">
+      <img src={logo} alt="Logo" className="logo-image" />
     </div>
   );
 };
 
-export default Login;
+// Login page component
+const LoginPage = () => {
+  return (
+    <div className="login-container">
+      <div className="login-form">
+        <Logo />
+        <form>
+          <input type="text" placeholder="Username" />
+          <input type="password" placeholder="Password" />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default LoginPage;
