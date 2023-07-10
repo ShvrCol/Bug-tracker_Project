@@ -16,10 +16,17 @@ const Logo = () => {
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
+
+    // Check if username and password are empty
+    if (username.trim() === '' || password.trim() === '') {
+      setErrorMessage('Please fill in the username and password fields!');
+      return;
+    }
 
     // Check if username and password match
     if (username === 'baghiz' && password === '123') {
@@ -27,7 +34,7 @@ const LoginPage = () => {
       navigate('/dashboard');
     } else {
       // Display error message or handle failed login attempt
-      console.log('Invalid username or password');
+      setErrorMessage('Invalid username or password');
     }
   };
 
@@ -49,6 +56,7 @@ const LoginPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button type="submit">Login</button>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </form>
       </div>
     </div>
